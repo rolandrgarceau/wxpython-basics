@@ -10,9 +10,7 @@ class TheApp(wx.App):
         # How do we wish to close the app through the terminal?
         super().__init__(clearSigInt=True)
 
-        # init the frame so it can be used in the application
-        self.InitFrame()
-    def InitFrame(self):
+    def OnInit(self):
         ''' to be called by TheApp class after initialization to create the frame, 
         subclass of wx.Frame: Creating the frame with our class will allow the app to "draw" it with a .Show()
         @param parent: whom up the food chain does this feed?

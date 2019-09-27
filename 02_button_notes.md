@@ -11,7 +11,7 @@ wxPython uses the native widgets for the OS it is running on.
 #### Thought process that does not work, but it was a fair assesment based of schooling:)
 The SetLabel may need to be called to populate the actual Gui display with the value it was created with as an argument passed to the constructor. My label= text might have been too long and it filled with ----- inside the actual button to test that may reflect that it couldn't fit.
 
-### Docs on how to create buttons
+### [Docs](https://wxpython.org/Phoenix/docs/html/wx.Button.html) on how to create buttons
 
 The preferred way to create standard buttons is to use default value of label. If no label is supplied and id is one of standard IDs from this list, a standard label will be used. In other words, if you use a predefined ID_XXX constant, just omit the label completely rather than specifying it. In particular, help buttons (the ones with id of ID_HELP ) under OS X can’t display any label at all and while wx.Button will detect if the standard “Help” label is used and ignore it, using any other label will prevent the button from correctly appearing as a help button and so should be avoided.
 
