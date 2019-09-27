@@ -15,11 +15,13 @@ That said move to having the boiler working with nothing but the hello world. Th
 
 Think about the process of building on top of each application a little more functionality. For example if we take the idea of data entry from the perspective of water chemistry to begin one panel view in our application, this means when we get to our 5th or 6th sequentially more difficult application the progress might be to use the grid view of column headings for importing a csv with to swith the data model around sufficiently to use numpy arrays that accomplish the grid population with, one transform at a time.
 
+### Table Of Contents
+
 #### Total Dissolved Solids (TDS.py)
 An application to get salt water tanks reading zero to hero in no time.
 
 ## Building Easy and Effective Documentation
-From the Home directory any and every Class should be clickable, not just listed as there and available. 
+If our website is soly a wiki-like informational service then we need to make searching through documentation seamless. From the Home directory any and every Class should be clickable, not just listed as there and available. A summary of all the Classes also mean that each has its own link.
 
 ### Basic Parts of this kinda Application
 All have [classes](https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html) with Capital 'C'. We write the lower case 'l' version in our code as a place holder or "variable" and in Python it's an object. `app=wx.App(already written class, we send this to "their" code, to make a class object)`. In reality it looks like 3 basic parts:
@@ -67,4 +69,4 @@ You have to use .show() to see anything. To have to add the frames and panels pa
 Some methods have to be overridden per docs- like OnInit() for the frame. This will allow your code to offer differences that the modules provided for you to use do not have. This can be found in other languages like java and even in React (the latter functionality is debateable with how it "implements"
 that). What is different in Python is the keyword "self". We call self.OnInit() in similar ways to other languages "this". 
 
-For python project "self" keeps the scope, or blinders of what the other programmed code around it can see, narrowed, focused, or specific to- in this case- the class in which it is being used. As we grow complexity we will see that scope can also have an "heirarchy" of how it looks at things, and if you do a few simple prints or use the debugger to view watches, we can see the scope changing how the information is grouped and saved. More on that subject later.  
+For python projects here "self" keeps the scope, or blinders of what the other programmed code around it can see, narrowed, focused, or specific to- in this case- the class in which it is being used. As we grow complexity we will see that scope can also have an "hierarchy" of how it looks at things, and if you do a few simple prints or use the debugger to view watches, we can see the scope changing how the information is grouped and saved. More on that subject later.  
