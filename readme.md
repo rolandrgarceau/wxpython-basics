@@ -75,6 +75,8 @@ that).
 
 What is different in Python is the keyword "self". We call self.OnInit() in similar ways to other languages "this". For python projects here "self" keeps the scope, or blinders of what the other programmed code around it can see, narrowed, focused, or specific to- in this case- the class in which it is being used. As we grow complexity we will see that scope can also have an "hierarchy" of how it looks at things, and if you do a few simple prints or use the debugger to view watches, we can see the scope changing how the information is grouped and saved. More on that subject later.  
 
-#### More options under [wx.lib]()
+#### More [Custom Controls](https://wiki.wxpython.org/CreatingCustomControls) options and [wx.lib]()
 
-A directory in the wxPython installation tree which contains a large number of "owner-drawn" widgets.
+Create custom drawn controls (our version of css) with the code examples for using your own images.
+
+wx.lib is a directory in the wxPython installation tree which contains a large number of "owner-drawn" widgets.
