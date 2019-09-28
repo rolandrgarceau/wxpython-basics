@@ -1,13 +1,14 @@
-# USE_GUI
+# wx.AppTraits
 
-The wx.App class represents the application itself when USE_GUI=1 .
+* The wx.AppTraits class defines various configurable aspects of a wx.App.
+* AppTraits is an abstract class since it contains many pure virtual functions
 
-## [wx.GetApp()](https://wxpython.org/Phoenix/docs/html/wx.functions.html#wx.GetApp)
+## Acsess to them
 
-Can return a wx.AppConsole type.
+* wx.App.GetTraits function
+* Create your own wx.AppTraits overriding the wx.App.CreateTraits function.
 
-## Headless horseman or headless chicken?
+### Connect a few objects here
 
 By default, wxWidgets creates a ConsoleAppTraits object for console applications (i.e. those applications linked against Base library only - see the page) and a GUIAppTraits object for GUI applications. Both these classes are derived by wx.AppTraits and represent concrete implementation of the wx.AppTraits interface.
-
 
