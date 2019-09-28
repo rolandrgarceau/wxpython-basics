@@ -23,12 +23,15 @@ class TheApp(wx.App):
         # frame = TheFrame(parent, id=ID_ANY, title=EmptyString, pos=DefaultPosition, size=DefaultSize, style=DEFAULT_FRAME_STYLE, name=FrameNameSt)
         frame = TheFrame(parent = None, title = "Total Dissolved Solids report", pos = (300,300))
         frame.Show(True)# without this it may run in the background with nothing to see
-
+        return True
 class TheFrame(wx.Frame):
     '''
     subclass of wx.Window; Frame is a top level window
     A frame is a window whose size and position can (usually) be changed by the user.
     Usually represents the first/main window a user will see
+    @param parent: whom up the food chain does this feed?
+    @param title: displays on the top task bar
+    @param pos: where it needs to be launched on the device's screen (think grid)
     '''
     def __init__(self, parent, title, pos): # call out default pos?
         super().__init__(parent=parent, title=title, pos=pos)
@@ -51,6 +54,8 @@ class ThePanel(wx.Panel):
         #
         # welcome = wx.StaticText(parent, id=ID_ANY, label=EmptyString, pos=DefaultPosition, size=DefaultSize, style=0, name=StaticTextNameStr)
         welcome = wx.StaticText(self, id=wx.ID_ANY, label="Boiler Starts Here", pos=(100,100))
+        # self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)
+        # self.Show(True)
 
 if __name__ == "__main__":
     app = TheApp()

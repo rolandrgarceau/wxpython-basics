@@ -1,5 +1,5 @@
 # [WxPython](https://wiki.wxpython.org/Getting%20Started) and Containerized deployment Tutorial Series
-This repo is an attempt to learn more about wxpython and how it may work as a tool to build diagnostic Guis, and even potentially headless ones with a "flick of a switch" on embedded devices (don't call .Show(), for instance). When people talk about GUIs, they usually speak of windows, menus and icons. A wx.Window is the base class from which all visual elements are derived (buttons, menus, etc) and what we normally think of as a program window is a wx.Frame. This is an unfortunate inconsistency that has led to much confusion for new users. This repo is not the basics, and if you are looking for that click the blue link above and follow that one instead.
+This repo is an attempt to learn more about wxpython and how it may work as a tool to build diagnostic Guis, and even potentially headless ones with a "flick of a switch" on embedded devices (don't call .Show(), for instance). When people talk about GUIs, they usually speak of windows, menus and icons. A wx.Window is the base class from which all visual elements are derived (buttons, menus, etc) and what we normally think of as a program window is a wx.Frame, and the view as the wx.Panel. This is an unfortunate inconsistency that has led to much confusion for new users. This repo is not the basics, and if you are looking for that click the blue link above and follow that one instead.
 
 I am starting with the basic parts needed to create an application using wxpython, and growing this eventually to a binary within a container to run from. For the mean time the interpreter and build being used by wxpython install with wxpython.app will be the stopping point for the time being- the same is as the documentation outlines to install into your environment for testing with conda. We will get to the pip feeeze > requirement.txt when that time comes. For now let's move forward to the basic hello world steps.
 
@@ -23,7 +23,7 @@ Fast prototyping means having some of these equations running in parallel. One b
 
 That said move to having the boilerplate code working with nothing but the hello world. This will allow the basic functionality of the Gui framework to be used rapidly for other cases. Turning to the actual changeable code for development we then make sure we have repeatable results in the IDE text editor, environments associated with that, and then move on to the OS we are developing with. Beware of VSCode and its terminal with conda environments as $PATH may not be what you may think it is. Know your .bash* file and what gets activated on launch, and what symlinks get followed, especially if you are building applications with different versions of dependencies within the application itself here. One may see the error: use framework download and have to deal with that- we will address this momentarily.
 
-Think about the process of building on top of each application a little more functionality. For example one customer for an aquarium maintenance program requested a simple app to log sample results of water quality to be viewed weekly, monthly, and quarterly. If we take the idea of data entry from the perspective of water chemistry to begin one UI view (called a panel with a frame in wxpython) which we may also potentially relate to as a tabbed window view in a browser, for instance. 
+Think about the process of building on top of each application a little more functionality. For example one customer for an aquarium maintenance program requested a simple app to log sample results of water quality to be viewed weekly, monthly, and quarterly. If we take the idea of data entry from the perspective of water chemistry to begin one UI view (called a panel within a frame in wxpython) which we may also potentially relate to as a tabbed window view in a browser, for instance. See the section on changing views under Panel below with a wx.Notebook widget.
 
 I will say tab for now as most can relate to a browser tab. Another tab (wx.Panel may have what we might intuitive think wx.Window might if coming from some HTML/CSS background) be could be handling water flow rates, mathematics behind them, and how to calculate staging within another panel "view" in our application. Often is the case that a customers ideas change as the project unfolds, so proper documentation is in order to be clear of what each party enters agreements into. This means when we get to our 5th or 6th sequentially more difficult application the progress might be that we have added in several layout views from our design notes and fleshed out workable frames for each (more on frames and panels in a moment) to use the grid view of column headings for importing a csv with to switch the data model around sufficiently to use numpy arrays that accomplish the grid population with, one transform at a time.
 
@@ -33,11 +33,14 @@ I will say tab for now as most can relate to a browser tab. Another tab (wx.Pane
 An application to get salt water tanks reading zero to hero in no time. Grow coral. Save the planet.
 
 #### Building Easy and Effective Documentation
-If our website is soly a wiki-like informational service then we need to make searching through documentation seamless. From the Home directory any and every Class should be clickable, not just listed as there and available. A summary of all the Classes also mean that each has its own link. Some really good resources are out there in this fashion.   
+If our website is solely a wiki-like informational service then we need to make searching through documentation seamless. From the Home directory any and every Class should be clickable, not just listed as there and available. In fact if we employ something like [draw.io](https://about.draw.io/use-draw-io-diagrams-in-google-docs/) for say, defining a user viewable class hierarchy map, we may do so having each member clickable and rearrangeable for interactive node display. A summary of all the Classes also mean that each has its own link. Some really good resources are out there in this fashion.   
 
 ### Basic Parts with Application
+#### Overview
+Remember the effect of wx.Window as the building blocks and Frames as the traditional "window view". wxPython applications do not have a main procedure, but instead have a close [wx.Console.Oninit](https://wxpython.org/Phoenix/docs/html/wx.AppConsole.html#wx.AppConsole.OnInit) member defined for a class derived from the wx.App class.
 
-Remember the effect of wx.Window as the building blocks and Frames as the traditional "window view".
+#### Oninit
+
 
 All have [classes](https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html) with Capital 'C'. We write the lower case 'l' version in our code as a place holder or "variable" and in Python it's an object. `app=wx.App(already written class, we send this to "their" code, to make a class object)`. In reality it looks like 3 basic parts:
 
@@ -47,8 +50,27 @@ All have [classes](https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html) 
 
 And has a few other required actions to `.show()` the parts in a window and wait for the user to do things `.mainloop()`
 
-### The [App](https://wxpython.org/Phoenix/docs/html/wx.App.html#wx-app)
-`app=wx.App(clearSigInt=True)` Clear SIGINT? This allows the app to terminate upon a Ctrl-C in the console like other GUI apps will.  You should override `OnInit` to do application initialization to ensure that the system, toolkit and wxWidgets are fully initialized.
+### The [wx.App](https://wxpython.org/Phoenix/docs/html/wx.App.html#wx-app)
+
+Applications get represented with this class. The main portions of this class to the following:
+
+* bootstrap the wxPython system and initialize the underlying gui toolkit
+* set and get application-wide properties
+* implement the native windowing system main message or event loop, and to dispatch events to window instances etc.
+
+#### Mandatory requirements of wx.App and entire program written int wxpython
+
+wx.App also has a few primary functionalities which every app has to have: 
+* A single App instance (just one declaration of this class)
+* All UI objects come *after* this is class object is created.
+  * This allows wxWidgets to be fully initialized
+
+#### Normal application coding procedure
+
+We do not have to derive a frame from this class, but it is good OOP. We may also want to deal with sizers if there is more than one frame. This can be thought of similarly like HTML flexbox or sizing based on percentages to maximize space based off total window size currently employed at the top level. More on that later. Everything can be built in the wx.App class, but best practice is to derive objects from this class that implement the OnInit(), where that Oninit() creates the *frame(s)* and then calls `self.SetTopWindow(frame)`. We may be using a derivative .Show() (check current docs for the proper call today) to perform some functionality that draws or paints to the screen for the user to see. See [app_console](wxpython-basics/03_app_console.md) for headless mode or hybrid build.
+
+
+`app=wx.App(clearSigInt=True)` Clear SIGINT? This allows the app to terminate upon a Ctrl-C in the console like other GUI apps will. You should override `OnInit` to do application initialization to ensure that the system, toolkit and wxWidgets are fully initialized.
 
 ### The [Frame](https://wxpython.org/Phoenix/docs/html/wx.Frame.html#wx.Frame)
 Contains Appearance, Events, Styles, and Frame Emitters
@@ -76,6 +98,13 @@ An application should normally define an wx.CloseEvent handler for the frame to 
 
 ### The [Panel](https://wxpython.org/Phoenix/docs/html/wx.Panel.html?highlight=panel)
 The portion that contains the widgets, buttons, etc, need to be added to the frame. A panel is a window on which controls are placed. There are Emitters with handlers here as well. The main feature over its parent class `wx.Window` is code for handling child windows and TAB traversal, which is implemented natively if possible (e.g. in wxGTK) or by wxWidgets itself otherwise.
+
+A book control allows users to switch between panels in a frame. wx.BookCtrlBase is the Parent Class for Book classes to inherit from. A wx.Notebook widget will present a "tabbed" control.
+
+#### wx.Notebook(parent, id, pos, size, style)
+
+#### Switcheing between panels
+To jump between views
 
 ### Gotchas
 
