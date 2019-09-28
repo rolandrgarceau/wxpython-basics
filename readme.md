@@ -69,7 +69,6 @@ wx.App also has a few primary functionalities which every app has to have:
 
 We do not have to derive a frame from this class, but it is good OOP. We may also want to deal with sizers if there is more than one frame. This can be thought of similarly like HTML flexbox or sizing based on percentages to maximize space based off total window size currently employed at the top level. More on that later. Everything can be built in the wx.App class, but best practice is to derive objects from this class that implement the OnInit(), where that Oninit() creates the *frame(s)* and then calls `self.SetTopWindow(frame)`. We may be using a derivative .Show() (check current docs for the proper call today) to perform some functionality that draws or paints to the screen for the user to see. See [app_console](wxpython-basics/03_app_console.md) for headless mode or hybrid build.
 
-
 `app=wx.App(clearSigInt=True)` Clear SIGINT? This allows the app to terminate upon a Ctrl-C in the console like other GUI apps will. You should override `OnInit` to do application initialization to ensure that the system, toolkit and wxWidgets are fully initialized.
 
 ### The [Frame](https://wxpython.org/Phoenix/docs/html/wx.Frame.html#wx.Frame)

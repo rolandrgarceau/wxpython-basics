@@ -36,8 +36,10 @@ class TheFrame(wx.Frame):
     def __init__(self, parent, title, pos): # call out default pos?
         super().__init__(parent=parent, title=title, pos=pos)
         #self.OnInit()
+        self.initFrame()
     # from docs calls out to override OnInit
-    def OnInit(self):
+
+    def initFrame(self):
         panel = ThePanel(parent=self)
         return True
 
