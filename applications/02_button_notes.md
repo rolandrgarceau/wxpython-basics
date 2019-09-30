@@ -17,6 +17,8 @@ The preferred way to create standard buttons is to use default value of label. I
 
 In addition to that, the button will be decorated with stock icons under GTK+ 2.
 
-Using a predefined ID_XXX constant sounds like we are defining our own selectors here for dom traversal, or a means to call out specific labels when we start talking about multiple buttons, but we need to be clear what it is we seek to obtain here. Just a font color change? Can we declare a wxStaticText object and set the foreground color and be done with it? or do we wish this for all buttons as a default?
+Using a predefined ID_XXX constant sounds like we may be defining our own selectors for buttons to perform actions similar to [dom traversal](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction), or a means to call out specific labels when we start talking about multiple buttons, but we need to be clear what it is we seek to obtain here. We can use the ID to locate a specific item, for say, a set focus or get text operation alternately. We need to be aware of ID_ANY and how that works. Just a font color change? Can we declare a wxStaticText object and set the foreground color and be done with it? or do we wish this for all buttons as a default?
+
+See [this](http://www.blog.pythonlibrary.org/2019/06/05/getting-the-correct-notebook-tab-across-platforms-in-wxpython/) article that describes how tab change events happen.
 
 ## More support with designing [Custom Controls](https://wiki.wxpython.org/CreatingCustomControls)

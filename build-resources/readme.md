@@ -1,0 +1,3 @@
+# Parts we can use
+
+This directory will begin laying out some functionality we may need to employ to work out a prototype. Primary investigation of utility functions can be copied into here for further implementation. A potential intermediate step might be to look into implementation examples of each functionality before actually commiting this to our implementation and integration. Don't reinvent the wheel if you do not have to, and stick to design considerations, customer requirements, and negotiated deliverables. 

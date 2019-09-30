@@ -36,11 +36,10 @@ An application to get salt water tanks reading zero to hero in no time. Grow cor
 If our website is solely a wiki-like informational service then we need to make searching through documentation seamless. From the Home directory any and every Class should be clickable, not just listed as there and available. In fact if we employ something like [draw.io](https://about.draw.io/use-draw-io-diagrams-in-google-docs/) for say, defining a user viewable class hierarchy map, we may do so having each member clickable and rearrangeable for interactive node display. A summary of all the Classes also mean that each has its own link. Some really good resources are out there in this fashion.   
 
 ### Basic Parts with Application
-#### Overview
+From an any application view we can start by saying there will usually be a user interface, some glue to connect it to services on the simplest of terms a file structure for persistance or a database for a backend to work with, and a means to manipulate and deal with these interactions of the user and system over time. If we are designing diagnostic systems this MVC like model may be headless, which wxpython supports a great deal of option here with. As we become familiar with their offereings and begin working our use cases, we may notice a divergence of what we consider headless and what a gui crossover program from their model might look like. 
+
+#### Overview to Building with wxPython modules
 Remember the effect of wx.Window as the building blocks and Frames as the traditional "window view". wxPython applications do not have a main procedure, but instead have a close [wx.Console.Oninit](https://wxpython.org/Phoenix/docs/html/wx.AppConsole.html#wx.AppConsole.OnInit) member defined for a class derived from the wx.App class.
-
-#### Oninit
-
 
 All have [classes](https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html) with Capital 'C'. We write the lower case 'l' version in our code as a place holder or "variable" and in Python it's an object. `app=wx.App(already written class, we send this to "their" code, to make a class object)`. In reality it looks like 3 basic parts:
 
@@ -49,6 +48,9 @@ All have [classes](https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html) 
 * The Panel
 
 And has a few other required actions to `.show()` the parts in a window and wait for the user to do things `.mainloop()`
+
+#### Oninit 
+Is a function that we will use within the App class to perform our preparation of the application to be loaded for the OS to make use of. There are a few specific prceedures to adhere to so that we do not have conflicts when performing the display of information of our application and things like updates to it.
 
 ### The [wx.App](https://wxpython.org/Phoenix/docs/html/wx.App.html#wx-app)
 
@@ -100,10 +102,9 @@ The portion that contains the widgets, buttons, etc, need to be added to the fra
 
 A book control allows users to switch between panels in a frame. wx.BookCtrlBase is the Parent Class for Book classes to inherit from. A wx.Notebook widget will present a "tabbed" control.
 
-#### wx.Notebook(parent, id, pos, size, style)
-
 #### Switcheing between panels
-To jump between views
+To jump between views take a look at the tab-traversal notes section which employs the following:
+* wx.Notebook(parent, id, pos, size, style)
 
 ### Gotchas
 
