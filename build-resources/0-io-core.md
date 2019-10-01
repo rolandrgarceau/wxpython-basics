@@ -1,6 +1,6 @@
 # [Core I/O](https://docs.python.org/3/library/io.html#module-io)
 
-Source from Lib/io.py. Usually hello worlds have similar basic mentality: Outline the install and then write some "stuff" to the console to know the minimums are working. This outline is a little higher up on the food chain as the "read-it-first-guide" for understanding how the application *will best* use your data as it is passed around in "la-la-land" to wherever it needs to go. Get ready for the $10 concepts tied together here after months of squirrel chasing (I'm still figuring it out as we go too, btw). 
+Source from [Lib/io.py](https://github.com/python/cpython/blob/master/Lib/io.py). Read the github readme on the base I/O heirarchy in Python first (IOBase is an abstract class). Usually hello worlds have similar basic mentality: Outline the install and then write some "stuff" to the console to know the minimums are working. This outline is a little higher up on the food chain as the "read-it-first-guide" for understanding how the application *will best* use your data as it is passed around in "la-la-land"- to wherever it needs to go. Get ready for the $10 concepts tied together here after months of squirrel chasing (I'm still figuring it out as we go too, btw). 
 
 ## Three types of file objects defined in the [io]() module
 * text i/o
@@ -9,9 +9,9 @@ Source from Lib/io.py. Usually hello worlds have similar basic mentality: Outlin
 
 ## Concrete object is called a file object (finally hit me like a brick)
 
-Other similar references are "Stream" and file-like object, independent of the category the concrete Stream object is *another* independent concrete object The file object exposes the file-oriented API with the familiar read() and write() methods *to an underlying resource*. Which ones, you say?
+Other similar references are terms used like "Stream" and file-like object. Independent of the category the concrete Stream object is *another* independent concrete object The file object exposes the file-oriented API with the familiar read() and write() methods *to an underlying resource*. Which ones, you say?
 
-Depending on how it was created it may get immediate access to the real file on disk, or another type of communication device or storage. This also may look like stdin character duplication if you have played with sockets and written across terminal with telnet, you may have seen those duplicate characters when transmitting/writing- thats because they also get copied to stdout. The file like objects are streams.
+Depending on how it was created it may get immediate access to the real file on disk, or another type of communication device or storage. This also may look like stdin character duplication if you have played with sockets and written across a terminal with telnet, you may have seen those duplicate characters when transmitting/writing- thats because they also get copied to stdout. The file like objects are streams.
 
 In-memory text streams are also available as [StringIO](https://docs.python.org/3/library/io.html#io.StringIO) objects in Python:
 
@@ -48,11 +48,12 @@ contents = output.getvalue()
 
 # Close object and discard memory buffer --
 # .getvalue() will now raise an exception.
-output.close() # or test a with statement and see if you get the is closed true... 
+output.close() # or test a with statement and see if you get the is closed = true... 
 
 ```
 
 Hopefully your mental reboot is awaiting stdin input questions like:
+
 * What's the max buff size?
 * Can we blow it out here? 
 
