@@ -1,6 +1,8 @@
-# [Core I/O](https://docs.python.org/3/library/io.html#module-io)
+# io- Core Tools for working with Streams [here](https://docs.python.org/3/library/io.html)
 
-Source from [Lib/io.py](https://github.com/python/cpython/blob/master/Lib/io.py). Read the github readme on the base I/O heirarchy in Python first (IOBase is an abstract class). Usually hello worlds have similar basic mentality: Outline the install and then write some "stuff" to the console to know the minimums are working. This outline is a little higher up on the food chain as the "read-it-first-guide" for understanding how the application *will best* use your data as it is passed around in "la-la-land"- to wherever it needs to go. Get ready for the $10 concepts tied together here after months of squirrel chasing (I'm still figuring it out as we go too, btw). 
+Source code comes from [Lib/io.py](https://github.com/python/cpython/blob/master/Lib/io.py). I/O library is now conforming to PEP 3116. What is not clear is the github location from Lib/io.py describes the individual modules half way descent, but then starts in code importing _io which may be a little confusing for the newcomer to python. The source is from Lib. The file is io.py. Read the github readme on the base I/O hierarchy in Python first (IOBase is an abstract class) helps somewhat, but most of the detailed docs come from [here](https://docs.python.org/3/library/io.html). We will try to work the complexity out of this already challenging subject one module at a time.
+
+Usually hello worlds have similar basic mentality: Outline the install and then write some "stuff" to the console to know the minimums are working. This outline is a little higher up on the food chain as the "read-it-first-guide" for understanding how the application *will best* use your data as it is passed around in "la-la-land"- to wherever it needs to go. Get ready for the $10 concepts tied together here after months of squirrel chasing (I'm still figuring it out as we go too, btw). 
 
 ## Three types of file objects defined in the [io]() module
 * text i/o
@@ -11,13 +13,15 @@ Source from [Lib/io.py](https://github.com/python/cpython/blob/master/Lib/io.py)
 
 Other similar references are terms used like "Stream" and file-like object. Independent of the category the concrete Stream object is *another* independent concrete object The file object exposes the file-oriented API with the familiar read() and write() methods *to an underlying resource*. Which ones, you say?
 
-Depending on how it was created it may get immediate access to the real file on disk, or another type of communication device or storage. This also may look like stdin character duplication if you have played with sockets and written across a terminal with telnet, you may have seen those duplicate characters when transmitting/writing- thats because they also get copied to stdout. The file like objects are streams.
+Depending on how it was created it may get immediate access to the real file on disk, or another type of communication device or storage. This also may look like stdin character duplication if you have played with sockets and written across a terminal with telnet, you may have even seen those duplicate characters when transmitting/writing- thats because they also get copied to stdout. The file like objects are streams.
 
 In-memory text streams are also available as [StringIO](https://docs.python.org/3/library/io.html#io.StringIO) objects in Python:
 
 ```py
 f = io.StringIO("some initial text data")
 ```
+
+All streams are careful about the type of data you give to them. For example giving a `str` object to the `write()` method of a `binary` stream will raise a `TypeError`. So will giving a `bytes` object to the `write()` method of a `text` stream. Changed in version 3.3: Operations that used to raise `IOError` now raise `OSError`, since `IOError` is now an alias of `OSError`.
 
 ## Class [io.BytesIO](https://docs.python.org/3/library/io.html#io.BytesIO)
 
@@ -55,7 +59,9 @@ output.close() # or test a with statement and see if you get the is closed = tru
 Hopefully your mental reboot is awaiting stdin input questions like:
 
 * What's the max buff size?
+  * for data: from _io we can get DEFAULT_BUFFER_SIZE (usually open() uses the file's blksize from os.stat)
 * Can we blow it out here? 
+  * not sure just yet, but I'd gander anything is possible
 
 ### getvalue() out of getting hit with a metaphoric brick:)
 
