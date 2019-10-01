@@ -15,13 +15,22 @@ Other similar references are terms used like "Stream" and file-like object. Inde
 
 Depending on how it was created it may get immediate access to the real file on disk, or another type of communication device or storage. This also may look like stdin character duplication if you have played with sockets and written across a terminal with telnet, you may have even seen those duplicate characters when transmitting/writing- thats because they also get copied to stdout. The file like objects are streams.
 
-In-memory text streams are also available as [StringIO](https://docs.python.org/3/library/io.html#io.StringIO) objects in Python:
+All streams are careful about the type of data you give to them. For example giving a `str` object to the `write()` method of a `binary` stream will raise a `TypeError`. So will giving a `bytes` object to the `write()` method of a `text` stream. Changed in version 3.3: Operations that used to raise `IOError` now raise `OSError`, since `IOError` is now an alias of `OSError`.
+
+## Text I/O
+The text stream API is described in detail in the documentation of [TextIOBase](https://docs.python.org/3/library/io.html#io.TextIOBase.read). Text I/O is a subclass of [IOBase](https://docs.python.org/3/library/io.html#io.IOBase) which expects and produces str objects. This means that whenever the backing store is natively made of bytes (a file is this way), encoding and decoding of data is made transparently, as well as optional translation of platform-specific newline characters. We also may set encoding with a "regular open" here.
+
+In-memory text streams are also available as an alternate use with [StringIO](https://docs.python.org/3/library/io.html#io.StringIO) objects in Python:
 
 ```py
 f = io.StringIO("some initial text data")
 ```
 
-All streams are careful about the type of data you give to them. For example giving a `str` object to the `write()` method of a `binary` stream will raise a `TypeError`. So will giving a `bytes` object to the `write()` method of a `text` stream. Changed in version 3.3: Operations that used to raise `IOError` now raise `OSError`, since `IOError` is now an alias of `OSError`.
+### Basic open technique creates a *text* stream
+
+```py
+f = open("myfile.txt", "r", encoding="utf-8")
+```
 
 ## Class [io.BytesIO](https://docs.python.org/3/library/io.html#io.BytesIO)
 
