@@ -110,7 +110,7 @@ To jump between views take a look at the tab-traversal notes section which emplo
 
 You have to use .show() to see anything. To have to add the frames and panels packed within to the main App class, and there has to be a way to init the App class and get into the main loop from the if __name__ statement.
 
-#### Dont forget to override called out methods
+#### Don't forget to override called out methods
 
 How do we find out which ones have to be overidden? Some methods have to be overridden per docs- like OnInit() for the frame. This will allow your code to offer differences that the modules provided for you to use do not have. This can be found in other languages like java and even in React (the latter functionality is debateable with how it "implements"
 that). 
@@ -121,6 +121,6 @@ What is different in Python is the keyword "self". We call self.OnInit() in simi
 
 #### More [Custom Controls](https://wiki.wxpython.org/CreatingCustomControls) options and [wx.lib]()
 
-Create custom drawn controls (our version of css) with the code examples for using your own images.
+Create custom drawn controls (wx version of css) with the code examples for using your own images.
 
 wx.lib is a directory in the wxPython installation tree which contains a large number of "owner-drawn" widgets.

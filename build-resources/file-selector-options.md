@@ -5,7 +5,7 @@ No matter what we do we need a file to work with somewhere, somehow- for both th
 Shows a file dialog asking the user for a file name for opening a file.
 
 ## [wx.FileSelector](https://wxpython.org/Phoenix/docs/html/wx.functions.html#wx.FileSelector) Cross platform 
-In Windows this is the common file selector dialog. X is called the file selector box. Path and filename are distinct elements. We can ge4t this with a dictionary and enumerate or deconstruct with path- not sure the moodule off the top right now.
+In Windows this is the common file selector dialog. X is called the file selector box. Path and filename are distinct elements. We can ge4t this with a dictionary and enumerate or deconstruct with path- not sure the module off the top right now.
 
 * If path is empty, the current directory will be used.
 * If filename is empty, no default filename will be supplied. 
