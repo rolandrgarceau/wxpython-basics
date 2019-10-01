@@ -2,7 +2,7 @@
 
 Source code comes from [Lib/io.py](https://github.com/python/cpython/blob/master/Lib/io.py). I/O library is now conforming to PEP 3116. What is not clear is the github location from Lib/io.py describes the individual modules half way descent, but then starts in code importing _io which may be a little confusing for the newcomer to python. The source is from Lib. The file is io.py. Read the github readme on the base I/O hierarchy in Python first (IOBase is an abstract class) helps somewhat, but most of the detailed docs come from [here](https://docs.python.org/3/library/io.html). We will try to work the complexity out of this already challenging subject one module at a time.
 
-Usually hello worlds have similar basic mentality: Outline the install and then write some "stuff" to the console to know the minimums are working. This outline is a little higher up on the food chain as the "read-it-first-guide" for understanding how the application *will best* use your data as it is passed around in "la-la-land"- to wherever it needs to go. Get ready for the $10 concepts tied together here after months of squirrel chasing (I'm still figuring it out as we go too, btw). 
+Usually hello worlds have similar basic mentality: Outline the install and then write some "stuff" to the console to know the minimums are working. This outline is a little higher up on the food chain as the "read-it-first-guide" for understanding how the application *will best* use your data as it is passed around in "la-la-land"- to wherever it needs to go. Get ready for the $10 concepts tied together here after months of squirrel chasing (I'm still figuring it out as we go too, btw). Further down this file describes how to efficiently use In-memory streams, which will gear us up for really writing efficient, Pythonic code later. But for now, let's start with a KISS.
 
 ## Three types of file objects defined in the [io]() module
 * text i/o
@@ -31,6 +31,24 @@ f = io.StringIO("some initial text data")
 ```py
 f = open("myfile.txt", "r", encoding="utf-8")
 ```
+
+## Binary I/O or also referred to as buffered io
+Details on Binary Stream API are [here](https://docs.python.org/3/library/io.html#io.BufferedIOBase) in the BufferedIOBase documentation. Likewise it inherits from IOBase, and has no public constructor. Remember IOBASE is an Abstract Class. Binary I/O expects [bytes-like objects](https://docs.python.org/3/glossary.html#term-bytes-like-object) and produces byte objects without any encoding, decoding, or newline translation like text i/o above, and is good for handling non-text or *manual* handling of text. We may notice this creation with the 'b' in code within an open()
+
+```py
+f = open("myfile.jpg", "rb")
+```
+We also can add in here binary streams and BytesIO objects
+```py 
+f = io.BytesIO(b"some initial binary data: \x00\x01")
+```
+### Sidenote on BufferedIOBase implementations
+A typical BufferedIOBase implementation should not inherit from a `RawIOBase` implementation, but wrap one, like [`BufferedWriter`](https://docs.python.org/3/library/io.html#io.BufferedWriter) and `BufferedReader`. Also there are overrides to keep in mind here.
+
+## Raw I/O is also called Unbuffered I/O
+* The raw stream API is found in [RawIOBase](https://docs.python.org/3/library/io.html#io.RawIOBase).
+* low-level building-block for binary and text streams not normally used
+* has its own read and write methods
 
 ## Class [io.BytesIO](https://docs.python.org/3/library/io.html#io.BytesIO)
 
@@ -90,3 +108,10 @@ Connecting this with code:
 ```py
 # see file-open.py
 ```
+
+## There is a high module interface for io.open()
+
+This is an alias for the builtin open() function.
+
+## In-memory streams
+It is also possible to use a str or bytes-like object as a file for both reading and writing. For strings StringIO can be used like a file opened in text mode. BytesIO can be used like a file opened in binary mode. Both provide full read-write capabilities with random access.
