@@ -25,3 +25,6 @@ Buffered I/O streams provide a higher-level interface to an I/O device than raw 
 * stream implementation using an in-memory bytes buffer.
 * inherits from BufferedIOBase. 
 
+### Step away from the madness for a minute if it hurts:)
+
+This is complicated concepts, with an attempted not-so-complex delivery. Go get a coffee, take a week to digest it, whatever you need to process this long term. For me, it has been 2 or so years of hitting it a few times here and there with maybe less than what some may consider "optimal" results (especially if your deadline is a 2 week sprint). However, memory management is the jist of this paragraph, so get it right now and feel good that you are providing optimal results later when  you are seeing traces and can't tell if its due to insomnia, or just a bad configuration file:) 
