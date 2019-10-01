@@ -48,7 +48,7 @@ contents = output.getvalue()
 
 # Close object and discard memory buffer --
 # .getvalue() will now raise an exception.
-output.close()
+output.close() # or test a with statement and see if you get the is closed true... 
 
 ```
 
