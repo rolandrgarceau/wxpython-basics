@@ -3,7 +3,7 @@
 A sizer (that is, one of the wx.Sizer sub-classes) can be used to handle the visual arrangement of elements within a window or frame. 
 
 * Calculates the appropriate size for the visual element 
-* Position elements accoording to particular rules
+* Position elements according to particular rules
 * Dynamic resizing happens when a frame is resized
 
 ## Common types of Sizers
@@ -29,7 +29,7 @@ The sizer.Add method has three arguments. The first one specifies the control to
 If the second parameter is 0, i.e. the control will not be resized, the third parameter may indicate if the control should be centered horizontally and/or vertically by using wx.ALIGN_CENTER_HORIZONTAL, wx.ALIGN_CENTER_VERTICAL, or wx.ALIGN_CENTER (for both) instead of wx.GROW or wx.SHAPED as that third parameter.
 
 You can alternatively specify combinations of wx.ALIGN_LEFT, wx.ALIGN_TOP, wx.ALIGN_RIGHT, and wx.ALIGN_BOTTOM. The default behavior is equivalent to wx.ALIGN_LEFT | wx.ALIGN_TOP.
-One potentially confusing aspect of the wx.Sizer and its sub-classes is the distinction between a sizer and a parent window. When you create objects to go inside a sizer, you do not make the sizer the object's parent window. A sizer is a way of laying out windows, it is not a window in itself. In the above example, all six buttons would be created with the parent window being the frame or window which encloses the buttons -- not the sizer. If you try to create a visual element and pass the sizer as the parent window, your program will crash.
+One potentially confusing aspect of the wx.Sizer and its sub-classes is the distinction between a sizer and a parent window. When you create objects to go inside a sizer, you do not make the sizer the object's parent window. A sizer is a way of laying out windows, it is not a window in itself. This has similar functionality to what the original Frames did when introduced in VB6 pre 2006 if that tells you how long I've been paying attention. About long enough the squirrel took to write that sentence:) In the above example, all six buttons would be created with the parent window being the frame or window which encloses the buttons -- not the sizer. If you try to create a visual element and pass the *sizer as the parent window*, your program will crash.
 
 Once you have set up your visual elements and added them to a sizer (or to a nested set of sizers), the next step is to tell your frame or window to use the sizer. You do this in three steps:
 ```py
