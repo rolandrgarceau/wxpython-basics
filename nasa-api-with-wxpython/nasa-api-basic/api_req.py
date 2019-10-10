@@ -14,4 +14,24 @@ full_url = base_url + '?' + urlencode(query, quote_via=quote_plus)
  
 r = requests.get(full_url)
 data = r.json()
-print(data)
+# 
+# place this in a file to be parsed?
+#
+# file open > write to it > extract information from it 
+print(data) # for now just stdout
+
+# extract data
+# def extract_first_item(data):
+
+item = data['collection']['items'][0]
+nasa_id = item['data'][0]['nasa_id']
+asset_url = 'https://images-api.nasa.gov/asset/' + nasa_id
+image_request = requests.get(asset_url)
+image_json = image_request.json()
+image_urls = [url['href'] for url in image_json['collection']['items']]
+
+print("New Data extraction")
+print('#')
+print('#')
+print('#')
+print(image_urls)

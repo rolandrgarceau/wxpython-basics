@@ -105,3 +105,11 @@ But in the Image API documentation, the API root is:
 
 https://images-api.nasa.gov
 We will be using the latter.
+
+## api_req.py
+
+Getting the data from a query then extract the data object for individual items returned from the API.
+This will extract the first item in the list of items from the JSON response. Then you can extract the `nasa_id`, which is required to get all the images associated with this particular result. Now you can add that nasa_id to a new URL end point and make a new request. At the end of the script there is array-like [] bracket notation (python has to use numpy for array implementation) that accesses the returned JSON data for what we may refer to the the item "sub zero" as the first one in the lookup. Creating a basic loop here we could create an album of images from. Simply get the length of items and create a list of these to make the next call for the image items with. With this basic information we can move to the UI called `nasa_search_ui.py`.
+
+
+
