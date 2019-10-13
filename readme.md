@@ -1,9 +1,11 @@
 # [WxPython](https://wiki.wxpython.org/Getting%20Started) and Containerized deployment Tutorial Series
-This repo is an attempt to learn more about wxpython and how it may work as a tool to build diagnostic Guis, and even potentially headless ones with a "flick of a switch" on embedded devices (don't call .Show(), for instance). When people talk about GUIs, they usually speak of windows, menus and icons. A wx.Window is the base class from which all visual elements are derived (buttons, menus, etc) and what we normally think of as a program window is a wx.Frame, and the view as the wx.Panel. This is an unfortunate inconsistency that has led to much confusion for new users. This repo is not the basics, and if you are looking for that click the blue link above and follow that one instead.
+This repo is an attempt to learn more about wxpython and how it may work as a tool to build diagnostic Guis, and even potentially headless ones with a "flick of a switch" on embedded devices (don't call .Show(), for instance). When people talk about GUIs, they usually speak of windows, menus and icons. A wx.Window is the base class from which all visual elements are derived (buttons, menus, etc) and what we normally think of as a program window is a wx.Frame, and the view as the wx.Panel. This is an unfortunate inconsistency that has led to much confusion for new users. This repo is not just the basics, and if you are looking for that click the blue link above and follow that one instead.
 
-I am starting with the basic parts needed to create an application using wxpython, and growing this eventually to a binary within a container to run from. For the mean time the interpreter and build being used by wxpython install with wxpython.app will be the stopping point for the time being- the same is as the documentation outlines to install into your environment for testing with conda. We will get to the pip feeeze > requirement.txt when that time comes. For now let's move forward to the basic hello world steps.
+## Rapid Prototyping
 
-From the basic hello world, we will design a boilerplate to build apps off of and to add functionality to, one step at a time. After getting a few applications built under our belt with adding a little bit of complexity to each sequential build, we will pause and look at how these applications may find themselves wrapped into a gRPC like generator function, assimilated into a modern microservices based binary that we can perform service deiscovery with, and then added to an image and eventually run as a container anywhere. Again, let us draw back to the baby steps first.
+I am starting with the basic parts needed to create an application using wxpython for quick application development, and growing this eventually to a binary within a container to run from. This guide started with the familiarity of a few GUI frameworks, targeting wxPython in particular with the intent of accelerating further the quick deploy mentality with a tool like [PySimpleGui](https://pysimplegui.readthedocs.io/en/latest/) (see the end of the readme for the quick rundown) when sufficient understanding of the inter-workings are complete and we have a means to reference the underlying structures to build our own custom implementations of all the widgets involved. For the mean time the interpreter and build being used by wxpython install with wxpython.app will be the the first focus- the same is as the documentation outlines to install into your environment for testing with conda. We will get to the pip feeeze > requirement.txt when that time comes. For now let's move forward to the basic hello world steps.
+
+From the basic hello world, we will design a boilerplate to build apps off of and to add functionality to, one step at a time. After getting a few applications built under our belt with adding a little bit of complexity to each sequential build, we will pause and look at how these applications may find themselves wrapped into a gRPC like generator function, assimilated into a modern microservices based binary that we can perform service discovery with, and then added to an image and eventually run as a container anywhere. Again, let us draw back to the baby steps first.
 
 That's a tall task, and is not for the faint of heart. It takes years of dedication to your education outside of traditional channels to know how every step in this process transpires. I still do not have all those answers memorized to be able to regurgitate it in any test like fashion. But I'm getting there daily- and am learning to be more effective in documentation and repeatability surrounding the steps to success. This is a trial and error repo. My goal is to try making a few apps and document each direction taken in reading the docs, writing a little code, testing, debugging, playing back the tutorial, and repeating the processed as needed (and in any order suited to gain results) until a good personal workflow is established with these tools. The key is that it gets pen to paper and we are all actively practicing writing Python, and maybe a little C++ when wxWidgets gets put in the mix.
 
@@ -50,7 +52,7 @@ All have [classes](https://wxpython.org/Phoenix/docs/html/wx.1moduleindex.html) 
 And has a few other required actions to `.show()` the parts in a window and wait for the user to do things `.mainloop()`
 
 #### Oninit 
-Is a function that we will use within the App class to perform our preparation of the application to be loaded for the OS to make use of. There are a few specific prceedures to adhere to so that we do not have conflicts when performing the display of information of our application and things like updates to it.
+Is a function that we will use within the App class to perform our preparation of the application to be loaded for the OS to make use of. There are a few specific procedures to adhere to so that we do not have conflicts when performing the display of information of our application and things like updates to it.
 
 ### The [wx.App](https://wxpython.org/Phoenix/docs/html/wx.App.html#wx-app)
 
@@ -124,3 +126,20 @@ What is different in Python is the keyword "self". We call self.OnInit() in simi
 Create custom drawn controls (wx version of css) with the code examples for using your own images.
 
 wx.lib is a directory in the wxPython installation tree which contains a large number of "owner-drawn" widgets.
+
+## [PySimpleGui](https://pysimplegui.readthedocs.io/en/latest/)
+
+Just a few lines of code is all it takes to use the power of this Gui framework. However, from their documentation it appears the port with PySimpleGui is geared to TKinter, with a few others in beta ,development, and experimental. This allows someone that read down here this far an option to join a community and assist others with their findings. The cookbook and readme can be found at ReadTheDocs
+
+### wxPython Specific readme
+
+There exists specific documentation for using wxPython with PySimpleGui 
+
+### The primary learning paths for PySimpleGUI are:
+
+* [This](http://www.PySimpleGUI.org) has 100+ pages of the PySimpleGUI User Manual.
+* [Cookbook](http://Cookbook.PySimpleGUI.org) with recipes to get you going and quick.
+* [Demo Programs](http://www.PySimpleGUI.com) that already work
+* YouTube videos
+  * 5 part series of [basics](https://www.youtube.com/playlist?list=PLl8dD0doyrvHMoJGTdMtgLuHymaqJVjzt)
+  * 10 part series of [more detail](https://www.youtube.com/playlist?list=PLl8dD0doyrvGyXjORNvirTIZxKopJr8s0)

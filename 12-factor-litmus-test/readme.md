@@ -202,5 +202,13 @@ Some web systems use “sticky sessions” which is caching user session data in
 
 ## Port Binding
 
-PHP apps might run as a module inside Apache HTTPD, or Java apps might run inside Tomcat. For 12 factor apps it does not rely on runtime injection of a webserver into the execution environment to create a web-facing service. The web app exports HTTP as a service by binding to a port, and listening to requests coming in on that port. We see that in detail with the router-like execution of Kubernetes, as it exposes ports as needed to do such things. So does docker or any other LXC like implementation of containers. We just make most of this process easy with a local host and : port 5000 defined from within a URL. The bindings often come in the form of an aliased name and a router layer with the router handle. 
+PHP apps might run as a module inside Apache HTTPD, or Java apps might run inside Tomcat. For 12 factor apps it does not rely on runtime injection of a webserver into the execution environment to create a web-facing service. The web app exports HTTP as a service by binding to a port, and listening to requests coming in on that port. We see that in detail with the router-like execution of Kubernetes, as it exposes ports as needed to do such things. So does docker or any other LXC like implementation of containers. We just make most of this process easy with a local host and : port 5000 (or whatever decided upon) defined from within a URL. The bindings often come in the form of an aliased name and a router layer with the router handle. 
 
+Port Bound web processes today are guided by this process with a web facing hostname. WE further have webserver libraries declared as dependencies for handling such requests. We can see this in action with flask, django, pyramid, and tornado in python just to name a few. The pylons project is a merger with the repoze.bfg framework based off WSGI calling convention:
+
+```py
+def application(environ, start_response):
+    start_response('200 OK', [('Content-Type', 'text/plain')])
+    yield b'Hello, World\n'
+```
+See the notes on WSGI for more information concerning an actual calling setup. 
