@@ -4,7 +4,7 @@ Just a few lines of code is all it takes to use the power of this Gui framework.
 
 ## wxPython Specific readme
 
-There exists specific documentation for using wxPython with PySimpleGui. The overview GitHub repo is [here](https://github.com/PySimpleGUI/PySimpleGUI).
+There exists specific documentation for using wxPython with PySimpleGui. The overview GitHub repo is [here](https://github.com/PySimpleGUI/PySimpleGUI) with specifics [here](https://github.com/PySimpleGUI/PySimpleGUI/tree/master/PySimpleGUIWx).
 
 ## Support For Python 2.7 ends
 

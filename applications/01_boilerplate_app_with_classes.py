@@ -61,4 +61,17 @@ class ThePanel(wx.Panel):
 
 if __name__ == "__main__":
     app = TheApp()
+    #
+    # redirect issues for debugging as needed.
+    #
+    # myapp = MyApp() # functions normally. Stdio is redirected to its own window
+    # myapp = MyApp(0) #does not redirect stdout. Tracebacks will show up at the console.
+    # myapp = MyApp(1, 'filespec') #redirects stdout to the file 'filespec'
+    # # NOTE: These are named parameters, so you can do this for improved readability:
+    # myapp = MyApp(redirect = 1, filename = 'filespec') # will redirect stdout to 'filespec'
+    # myapp = MyApp(redirect = 0) #stdio will stay at the console...
+
+    # option here to interject a debug window for looking into potential issues may need to be placed in the class in question after its init function in a particular menu item handler, for example
+    # import wx.lib.inspection
+    # wx.lib.inspection.InspectionTool().Show()
     app.MainLoop()
