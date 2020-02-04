@@ -6,6 +6,32 @@ Explore more after getting your conda environment activated with python 3.8 ish 
 
 Follow instructions for MacOS. I'm not backing any other platform instal here, but will answer questions on most Linux distros if the question is well formed.
 
+## Use conda
+
+First iteration on building guis in the old_tutorials directory used 4.04. This time around we will work with a fresh conda env and 4.0.7.post2.
+
+```sh
+
+# update
+conda update conda 
+# install command
+bash Miniconda3-latest-MacOSX-x86_64.sh
+```
+
+PackageNotInstalledError: Package is not installed in prefix. Check to see if your currently activated conda environment has the actual update package. We might need to revert to `base`. 
+
+Miniconda comes with Anaconda prompt to make it available inside the command prompt program which adds the necessary PATH information.
+
+### [Article](https://medium.com/dunder-data/anaconda-is-bloated-set-up-a-lean-robust-data-science-environment-with-miniconda-and-conda-forge-b48e1ac11646) describing miniconda and conda-forge for environment creation
+
+This article will KISS us where we need it.
+
+```sh
+
+conda install -c conda-forge wxpython
+
+```
+
 ### [Downloads](https://www.wxpython.org/pages/downloads/)
 
 Use pip to build from the released source archives, or from the source archives created in the pre-release snapshot builds. I use conda and recommend offloading some install responsibilities that way.
